@@ -25,6 +25,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final AuthService authService = AuthService();
+  final _messangerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scaffoldMessengerKey: _messangerKey,
       debugShowCheckedModeBanner: false,
       // Add ScaffoldMessenger widget here
         title: 'E-commerce Application',
