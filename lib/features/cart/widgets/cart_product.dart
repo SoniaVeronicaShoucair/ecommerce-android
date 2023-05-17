@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../models/product.dart';
 import '../../../providers/user_provider.dart';
 import '../../product_details/services/product_details_services.dart';
+import '../services/cart_services.dart';
 
 class CartProduct extends StatefulWidget {
   final int index;
@@ -19,7 +20,7 @@ class CartProduct extends StatefulWidget {
 class _CartProductState extends State<CartProduct> {
   final ProductDetailsServices productDetailsServices =
       ProductDetailsServices();
-  // final CartServices cartServices = CartServices();
+  final CartServices cartServices = CartServices();
 
   void increaseQuantity(Product product) {
     productDetailsServices.addToCart(
@@ -28,12 +29,12 @@ class _CartProductState extends State<CartProduct> {
     );
   }
 
-  // void decreaseQuantity(Product product) {
-  //   cartServices.removeFromCart(
-  //     context: context,
-  //     product: product,
-  //   );
-  // }
+  void decreaseQuantity(Product product) {
+    cartServices.removeFromCart(
+      context: context,
+      product: product,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
