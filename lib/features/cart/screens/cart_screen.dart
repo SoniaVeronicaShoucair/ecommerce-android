@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../common/custom_button.dart';
 import '../../../constants/global_variables.dart';
 import '../../../providers/user_provider.dart';
+import '../../address/screens/address_screen.dart';
 import '../../home/widgets/address_box.dart';
 import '../../search/screens/search_screen.dart';
 import '../widgets/cart_product.dart';
@@ -21,13 +22,13 @@ class _CartScreenState extends State<CartScreen> {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
-  // void navigateToAddress(int sum) {
-  //   Navigator.pushNamed(
-  //     context,
-  //     AddressScreen.routeName,
-  //     arguments: sum.toString(),
-  //   );
-  // }
+  void navigateToAddress(int sum) {
+    Navigator.pushNamed(
+      context,
+      AddressScreen.routeName,
+      arguments: sum.toString(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,14 +116,14 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             const AddressBox(),
             const CartSubtotal(),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: CustomButton(
-            //     text: 'Proceed to Buy (${user.cart.length} items)',
-            //     onTap: () => navigateToAddress(sum),
-            //     color: Colors.yellow[600],
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomButton(
+                text: 'Proceed to Buy (${user.cart.length} items)',
+                onTap: () => navigateToAddress(sum),
+                color: Colors.yellow[600],
+              ),
+            ),
             const SizedBox(height: 15),
             Container(
               color: Colors.black12.withOpacity(0.08),
