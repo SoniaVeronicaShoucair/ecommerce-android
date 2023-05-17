@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const authRouter =express.Router();
 const jwt = require("jsonwebtoken");
 const auth = require("../middlewares/auth");
+
 //SignUp Route
 authRouter.post("/api/signup",async (req,res)=>{
     //get the data from client

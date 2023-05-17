@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/global_variables.dart';
+import '../screens/category_deals_screen.dart';
 
 class TopCategories extends StatelessWidget {
   const TopCategories({Key? key}) : super(key: key);
+
+  void navigateToCategoryPage(BuildContext context, String category) {
+    Navigator.pushNamed(context, CategoryDealsScreen.routeName,
+        arguments: category);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +20,12 @@ class TopCategories extends StatelessWidget {
          scrollDirection: Axis.horizontal,
          itemExtent: 75,
         itemBuilder: (context, index) {
-          return Column(
-            // onTap: () => navigateToCategoryPage(
-            //   context,
-            //   GlobalVariables.categoryImages[index]['title']!,
-            // ),
-              children: [
+          return GestureDetector(
+            onTap: () => navigateToCategoryPage(context,
+              GlobalVariables.categoryImages[index]['title']!,
+            ),
+            child: Column(
+            children: [
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: ClipRRect(
@@ -40,7 +46,7 @@ class TopCategories extends StatelessWidget {
                   ),
                 ),
               ],
-
+            )
           );
         },
       ),

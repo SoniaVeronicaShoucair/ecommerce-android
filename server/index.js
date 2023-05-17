@@ -12,6 +12,9 @@ const DB="mongodb+srv://Sonia:Sonia1812@cluster0.3dmskt3.mongodb.net/?retryWrite
 //middleware
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
+app.use(productRouter);
+app.use(userRouter);
 
 //connections
 mongoose

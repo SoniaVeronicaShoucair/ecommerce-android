@@ -30,6 +30,7 @@ class AuthService{
           address: '',
           type: '',
           token: '',
+          cart: [],
         );
 
         http.Response res = await http.post(
@@ -71,6 +72,7 @@ class AuthService{
         }),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': '*/*; */*'
         },
       );
 

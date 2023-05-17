@@ -1,8 +1,11 @@
+import 'package:ecommerce_project/features/cart/screens/cart_screen.dart';
 import 'package:ecommerce_project/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../constants/global_variables.dart';
 import '../../features/account/screens/account_screen.dart';
+import '../../providers/user_provider.dart';
 
 class BottomBar extends StatefulWidget {
   static const String routeName = '/actual-home';
@@ -20,9 +23,7 @@ class _BottomBarState extends State<BottomBar> {
   List<Widget> pages=[
     const HomeScreen(),
     const AccountScreen(),
-    const Center(
-      child: Text('Cart Page'),
-    ),
+    const CartScreen(),
   ];
   void updatePage(int page){
     setState(() {
@@ -31,6 +32,7 @@ class _BottomBarState extends State<BottomBar> {
   }
   @override
   Widget build(BuildContext context) {
+    final userCartLen = context.watch<UserProvider>().user.cart.length;
     return Scaffold(
         body: pages[_page],
         bottomNavigationBar: BottomNavigationBar(
@@ -98,16 +100,38 @@ class _BottomBarState extends State<BottomBar> {
                       ),
                     ),
                   ),
-                  child: const Icon(
+              // child: Badge(
+              //   elevation: 0,
+                //   badgeContent: Text(userCartLen.toString()),
+                //   badgeColor: Colors.white,
+                child: Stack(
+                  children: [
+                    const Icon(
                       Icons.shopping_cart_outlined,
                     ),
-
-                  ),
-                    label: '',
-                ),
-            ],
-
-
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          userCartLen.toString(),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )),
+            label: '',
+          ),
+        ],
 
     ),
   );

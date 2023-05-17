@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { productSchema } = require("./product");
 
 const userSchema = mongoose.Schema({
     name: {
@@ -22,10 +23,6 @@ const userSchema = mongoose.Schema({
       password: {
         required: true,
         type: String,
-//        validator: (value) => {
-//              return value.length>6;
-//            },
-//            message: "Please enter a long password",
       },
       address: {
         type: String,
@@ -35,6 +32,15 @@ const userSchema = mongoose.Schema({
         type: String,
         default: "user",
       },
+      cart: [
+          {
+            product: productSchema,
+            quantity: {
+              type: Number,
+              required: true,
+            },
+          },
+        ],
 })
 
 const User = mongoose.model("User", userSchema);
